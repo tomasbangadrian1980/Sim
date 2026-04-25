@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nidelva Yacht Simulator</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0f172a;
+      --panel: #111827;
+      --river: #0b5d8c;
+      --bridge: #6b7280;
+      --dock: #1f2937;
+      --dock-water: #0d4f74;
+      --text: #e5e7eb;
+      --ok: #22c55e;
+      --warn: #f59e0b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(circle at top, #1e293b, var(--bg));
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      padding: 16px;
+    }
+    .layout {
+      width: min(1100px, 100%);
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 16px;
+    }
+    canvas {
+      width: 100%;
+      aspect-ratio: 10 / 7;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      background: #020617;
+      box-shadow: 0 12px 28px rgba(0,0,0,.35);
+    }
+    .panel {
+      background: rgba(17,24,39,.92);
+      border: 1px solid #374151;
+      border-radius: 12px;
+      padding: 14px;
+      line-height: 1.45;
+    }
+    h1 { font-size: 1.1rem; margin: 0 0 8px; }
+    .small { font-size: .92rem; opacity: .9; }
+    .kbd {
+      display: inline-block;
+      font-size: .85rem;
+      min-width: 1.7em;
+      text-align: center;
+      border: 1px solid #4b5563;
+      border-bottom-width: 2px;
+      border-radius: 6px;
+      padding: 1px 6px;
+      margin: 0 2px;
+      background: #111827;
+    }
+    .ok { color: var(--ok); }
+    .warn { color: var(--warn); }
+    ul { margin: 8px 0 0 20px; padding: 0; }
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <canvas id="sim" width="1000" height="700" aria-label="Nidelva båt simulator"></canvas>
+    <aside class="panel">
+      <h1>Nidelva yacht-simulator</h1>
+      <div id="status" class="small">Laster…</div>
+      <p class="small">
+        Kontroller:
+        <span class="kbd">W</span> frem (1 knop),
+        <span class="kbd">S</span> bak (0,5 knop),
+        slipp tasten for 0 knop,
+        <span class="kbd">A</span>/<span class="kbd">D</span> for sving.
+      </p>
+      <ul class="small">
+        <li>Elv: ca 100 m bred.</li>
+        <li>Yacht: 55 m x 9 m.</li>
+        <li>Nedre broåpning: 13 m i midten.</li>
+        <li>Mål: rygge inn mot øst i dokkbasseng (100 m x 60 m).</li>
+      </ul>
+      <p id="hint" class="small warn"></p>
+    </aside>
+  </div>
+  <script src="sim.js"></script>
+</body>
+</html>
